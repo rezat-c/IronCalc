@@ -12,8 +12,8 @@ pub enum Token {
     Condition(Compare, f64), // [<=100] (Comparator, number)
     Currency(char),          // [$€] ($ currency symbol)
     Literal(char), // €, $, (, ), /, :, +, -, ^, ', {, }, <, =, !, ~, > and space or scaped \X
-    Spacer(char),  // *X
-    Ghost(char),   // _X
+    Repeat(char),  // *X
+    Spacer(char),  // _X
     Text(String),  // "Text"
     Separator,     // ;
     Raw,           // @
@@ -305,7 +305,7 @@ impl Lexer {
                 }
                 '_' => {
                     if let Some(y) = self.read_next_char() {
-                        Token::Ghost(y)
+                        Token::Spacer(y)
                     } else {
                         self.set_error("Unexpected end of input");
                         Token::ILLEGAL
@@ -313,7 +313,7 @@ impl Lexer {
                 }
                 '*' => {
                     if let Some(y) = self.read_next_char() {
-                        Token::Spacer(y)
+                        Token::Repeat(y)
                     } else {
                         self.set_error("Unexpected end of input");
                         Token::ILLEGAL

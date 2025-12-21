@@ -173,12 +173,12 @@ pub fn format_number(value_original: f64, format: &str, locale: &Locale) -> Form
                     TextToken::Text(t) => {
                         text = format!("{text}{t}");
                     }
-                    TextToken::Ghost(_) => {
+                    TextToken::Spacer(_) => {
                         // we just leave a whitespace
                         // This is what the TEXT function does
                         text = format!("{text} ");
                     }
-                    TextToken::Spacer(_) => {
+                    TextToken::Repeat(_) => {
                         // we just leave a whitespace
                         // This is what the TEXT function does
                         text = format!("{text} ");
@@ -452,12 +452,12 @@ pub fn format_number(value_original: f64, format: &str, locale: &Locale) -> Form
                     TextToken::Text(t) => {
                         text = format!("{text}{t}");
                     }
-                    TextToken::Ghost(_) => {
+                    TextToken::Spacer(_) => {
                         // we just leave a whitespace
                         // This is what the TEXT function does
                         text = format!("{text} ");
                     }
-                    TextToken::Spacer(_) => {
+                    TextToken::Repeat(_) => {
                         // we just leave a whitespace
                         // This is what the TEXT function does
                         text = format!("{text} ");

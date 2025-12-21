@@ -9,8 +9,8 @@ pub struct Digit {
 pub enum TextToken {
     Literal(char),
     Text(String),
-    Ghost(char),
     Spacer(char),
+    Repeat(char),
     // Text
     Raw,
     Digit(Digit),
@@ -218,11 +218,11 @@ impl Parser {
                 Token::Text(value) => {
                     tokens.push(TextToken::Text(value));
                 }
-                Token::Ghost(value) => {
-                    tokens.push(TextToken::Ghost(value));
-                }
                 Token::Spacer(value) => {
                     tokens.push(TextToken::Spacer(value));
+                }
+                Token::Repeat(value) => {
+                    tokens.push(TextToken::Repeat(value));
                 }
                 Token::Day => {
                     is_date = true;
